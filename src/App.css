@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+.header{
+  color:rgb(255, 115, 0);
+}
+
+.btn{
+  border: 2px solid gray;
+  background-color: orangered;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 5px;
+  color: white;
+  margin-left:10px;
+}
+
+.blue{
+  color:blue;
+}
+
+.bold{
+  font-weight:bold;
+}
+
+.font{
+  font-size:40px;
+}

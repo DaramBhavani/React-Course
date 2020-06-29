@@ -1,0 +1,10 @@
+.stylingInput{
+    text-align: center;
+    padding:3px;
+    margin-top:5px;
+}
+
+input{
+    text-transform: uppercase;
+    padding:3px;
+}

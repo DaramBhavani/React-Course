@@ -1,19 +1,25 @@
 .App {
   text-align: center;
+  margin : 0 auto;
 }
 
 .header{
   color:rgb(255, 115, 0);
 }
 
-.btn{
+.Button{
   border: 2px solid gray;
-  background-color: orangered;
+  background-color: green;
   cursor: pointer;
   font-size: 15px;
   padding: 5px;
   color: white;
   margin-left:10px;
+}
+
+.Button:hover{
+  background-color: darkgreen;
+  border:2px solid darkgray;
 }
 
 .blue{
@@ -26,4 +32,12 @@
 
 .font{
   font-size:40px;
+}
+
+.Button .Red{
+  background-color: red;
+}
+
+.Button .Red:hover{
+  background-color: orangered;
 }

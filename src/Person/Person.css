@@ -4,4 +4,10 @@
     margin:16px auto;
     padding:5px;
     width:50%;
+} 
+
+@media (min-width : 500px) {
+    .personDetails{
+       width : 450px;        
+    }
 } */

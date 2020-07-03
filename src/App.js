@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 //import React, {useState} from 'react';
-import Radium, {StyleRoot} from 'radium';
+//import Radium, {StyleRoot} from 'radium';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person.js';
 //import UserInput from './UserInput/UserInput.js';
 //import UserOutput from './UserOutput/UserOutput.js';
-//import ValidationComponent from './ValidationComponent/ValidationComponent'
+//import ValidationComponent from './ValidationComponent/ValidationComponent';
+
+ /********* Styled Button using styled components **********/
+const StyledButton  = styled.button`
+
+  background-color :${props => props.alt? 'red' : 'darkgreen'};
+  border: 2px solid gray;
+  cursor: pointer;
+  fontSize: 15px;
+  padding: 5px;
+  color:white;
+  margin-left:20px;
+
+  &:hover {
+    background-color : ${props => props.alt ? 'orangered' : 'green'};
+    border : 2px solid darkgray;
+  }
+    
+`;
 
 
 //************* Class Component ******************/
@@ -74,19 +93,6 @@ class App extends Component {
   }
 
  render() {
-
-    const style = {
-      border: '2px solid gray',
-      backgroundColor : 'darkgreen',
-      cursor: 'pointer',
-      fontSize: '15px',
-      padding:'5px',
-      color:'white',
-      ':hover': {
-        backgroundColor : 'green',
-        border : '2px solid darkgray'
-      }
-    }
     
     //{this.deletePersonHandler.bind(this, person.rank)} 
 
@@ -107,38 +113,35 @@ class App extends Component {
           changed = {this.nameChangeHandler}>My Hobbies : cricket</Person> */}
         </div>
       );
-      style.backgroundColor = "red";
-      style[':hover'] = {
-        backgroundColor : "orangered",
-      };
     }
 
-    const classes = [];
+    const assignedclasses = [];
 
     if(this.state.persons.length <= 2){
-      classes.push('blue');      // classes = ['blue'];
+      assignedclasses.push('blue');      // classes = ['blue'];
     }
     if(this.state.persons.length <= 1){
-      classes.push('bold');      //classes = ['blue' , 'bold'];
+      assignedclasses.push('bold');      //classes = ['blue' , 'bold'];
     }
 
   
     return (
-      <StyleRoot>
-      <div className="App">
-        <h1 className = {classes.join(' ')}>HI i'm react app</h1>
-        <button style = {style} className = "full" 
-        onClick = {this.togglePersonsHandler}>Toggle Persons</button>
+      <div className= "App">
+        <h1 className = {assignedclasses.join(' ')}>HI i'm react app</h1>
+        <StyledButton  alt = {this.state.showPersons} onClick = {this.togglePersonsHandler}>
+          Toggle Persons
+        </StyledButton>
         {persons}
-        <button className = "btn" onClick = {this.addingObjectInArray.bind(this)}>addPerson</button>
+        <StyledButton  alt = {this.state.showPersons} onClick = {this.addingObjectInArray.bind(this)}>
+          addPerson
+        </StyledButton>
       </div>
-      </StyleRoot>
     );
     //return React.createElement("div",{className:'App'},React.createElement("h1",{className:'header'},"React App"));
   }
 }
 
-export default Radium(App);
+export default App;
 
 
 //************ functional component**************//

@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Component} from 'react';
 //import Radium from 'radium';
 import styled from 'styled-components';
 //import styles from './Person.css';
@@ -15,7 +15,7 @@ const StyledDiv =  styled.div`
         }
 `;
 
-const person = (props) => {
+class Person extends Component {
 
     // const style = {
     //     '@media (max-width :500px)' : {
@@ -23,19 +23,25 @@ const person = (props) => {
     //     }
     // };
 
-    console.log('[Person.js] rendering...');
+    render(){
 
-    return (
-        //<div className = "personDetails" style = {style}>
-        <div>
-            <StyledDiv>
-                <p onClick = {props.click}>My Rank {props.rank} , My Name {props.name} and My age {props.age}</p>
-                <p>{props.children}</p>
-                <input type="text" onChange = {props.changed} value = {props.name}/>
+        console.log('[Person.js] rendering...');
+
+        return (
+            //<div className = "personDetails" style = {style}>
+            <div>
+            <StyledDiv>  
+                   
+                    <p onClick = {this.props.click}>My Rank {this.props.rank} , My Name {this.props.name} and My age {this.props.age}</p>
+                    <p>{this.props.children}</p>
+                    <input type="text" onChange = {this.props.changed} value = {this.props.name}/>              
+           
             </StyledDiv>
-        </div>
-        //</div>
-    );
+            </div>
+            //</div>
+        );
+
+    }
 };
 
-export default person;
+export default Person;

@@ -1,25 +1,57 @@
-import React from 'react';
+import React , {Component} from 'react';
 import Person from './Person/Person'
 
 
-const Persons = (props) =>  { 
+class Persons extends Component { 
 
-    console.log('[persons.js] rendering...');
+    static getDerivedStateFromProps(props,state){
+        console.log('[persons.js] getDerivedStateFromProps');
+        return state;
+    }
 
-    return  props.persons.map( (person) => {
+    shouldComponentUpdate(nextProps, nextState){
+        console.log('[persons.js] shouldComponentUpdate');
+        if(nextProps.persons !== this.props.persons){
+        return true;
+        }
+        else{
+            return false
+        }
+    }
 
-        return ( 
-            <Person 
-                click = {props.deleted.bind(this, person.rank)}
-                rank = {person.rank} 
-                name = {person.name} 
-                age = {person.age} 
-                key = {person.rank}  
-                changed = {(event) => props.changed(event, person.rank)}
-            />
-        );
+    getSnapshotBeforeUpdate(prevprops, prevState){
+        console.log('[persons.js] getSnapshotBeforeUpdate');
+        return null;
+    }
 
-    });         
+    componentWillUnmount(){
+        console.log('[Persons.js] componentWillUnmount');
+    }
+
+    componentDidUpdate(){
+        console.log('[Persons.js] componentDidUpdate');
+    }
+
+    render(){
+
+        console.log('[persons.js] rendering...');
+
+        return this.props.persons.map( (person) => {
+
+            return ( 
+                <Person 
+                    click = {this.props.deleted.bind(this, person.rank)}
+                    rank = {person.rank} 
+                    name = {person.name} 
+                    age = {person.age} 
+                    key = {person.rank}  
+                    changed = {(event) => this.props.changed(event, person.rank)}
+                />
+            );
+
+        });
+        
+    }
 
 }
 

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 //import Radium, {StyleRoot} from 'radium';
 import './App.css';
 import Person from '../components/persons/Person/Person';
-import Persons from '../components/persons/Persons'
-import Cockpit from '../components/Cockpit/Cockpit'
+import Persons from '../components/persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 //import UserInput from './UserInput/UserInput.js';
 //import UserOutput from './UserOutput/UserOutput.js';
 //import ValidationComponent from './ValidationComponent/ValidationComponent';
@@ -29,7 +29,8 @@ class App extends Component {
     otherState : 'some other value',
     showPersons : false,
     showCockpit : true,
-    changeCounter : 0
+    changeCounter : 0,
+    authenticated : false
   };
 
   static getDerivedStateFromProps(props,state){
@@ -108,6 +109,10 @@ class App extends Component {
     this.setState({persons});
   }
 
+  loginHandler = () => {
+    this.setState({authenticated:true});
+  }
+
  render() {
 
     console.log('[App.js] render');
@@ -120,22 +125,24 @@ class App extends Component {
       persons = <Persons 
         persons = {this.state.persons} 
         deleted = {this.deletePersonHandler} 
-        changed = {this.nameChangeHandler} />;
+        changed = {this.nameChangeHandler} 
+        login = {this.loginHandler}
+      />;
     }
 
     return (
       <div className= "App">       
         <button onClick = {() => {this.setState({showCockpit : false});}}>Remove Cockpit</button>
-        { this.state.showCockpit ? (
-          <Cockpit 
-            title = {this.props.appTitle}
-            showPersons = {this.state.showPersons}
-            personsLength = {this.state.persons.length}
-            toggle = {this.togglePersonsHandler}
-            adding =  {this.addingObjectInArray}
-          />  
-        ) : null }
-        {persons}
+          { this.state.showCockpit ? (
+            <Cockpit 
+              title = {this.props.appTitle}
+              showPersons = {this.state.showPersons}
+              personsLength = {this.state.persons.length}
+              toggle = {this.togglePersonsHandler}
+              adding =  {this.addingObjectInArray}
+            />  
+          ) : null }
+          {persons}
       </div>
     );
     //return React.createElement("div",{className:'App'},React.createElement("h1",{className:'header'},"React App"));
